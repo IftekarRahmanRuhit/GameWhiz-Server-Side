@@ -49,6 +49,19 @@ async function run() {
       res.send(result);
     });
 
+  
+
+
+
+    app.get("/gamewatchlist/:email", async (req, res) => {
+      const userEmail = req.params.email;
+      const query = { userEmail };
+      const result = await watchListCollection.find(query).toArray();
+      res.send(result);
+    });
+
+
+
     app.post("/reviews", async (req, res) => {
       const newReview = req.body;
       console.log("New Review Item:", newReview);
@@ -56,7 +69,7 @@ async function run() {
       res.send(result);
     });
 
-    app.post("/watchlist", async(req,res)=> {
+    app.post("/gamewatchlist", async(req,res)=> {
       const watchListItem =req.body;
       const result = await watchListCollection.insertOne(watchListItem)
       res.send(result);
