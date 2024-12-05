@@ -28,6 +28,7 @@ async function run() {
 
     const database = client.db("gameDB");
     const reviewCollection = database.collection("reviews");
+    const watchListCollection = database.collection("watchlist");
 
     app.get("/reviews", async (req, res) => {
       const cursor = reviewCollection.find();
@@ -54,6 +55,14 @@ async function run() {
       const result = await reviewCollection.insertOne(newReview);
       res.send(result);
     });
+
+    app.post("/watchlist", async(req,res)=> {
+      const watchListItem =req.body;
+      const result = await watchListCollection.insertOne(watchListItem)
+      res.send(result);
+    })
+
+
 
 
 
