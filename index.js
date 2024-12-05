@@ -70,6 +70,36 @@ async function run() {
       res.send(result);
     });
 
+    app.put("/reviews/:id", async (req, res) => {
+      const id = req.params.id;
+      const review = req.body;
+  
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateReview = {
+        $set: {
+          coverImage: review.coverImage,
+          gameTitle: review.gameTitle,
+          description: review.description,
+          rating: review.rating,
+          year: review.year,
+          genre: review.genre,
+          userEmail: review.userEmail,
+          userName: review.userName,
+        },
+      };
+  
+      const result = await reviewCollection.updateOne(filter, updateReview, options);
+      res.send(result);
+    });
+
+
+
+
+
+
+
+
     app.post("/reviews", async (req, res) => {
       const newReview = req.body;
       console.log("New Review Item:", newReview);
@@ -82,6 +112,10 @@ async function run() {
       const result = await watchListCollection.insertOne(watchListItem);
       res.send(result);
     });
+
+
+
+
 
     await client.db("admin").command({ ping: 1 });
     console.log(
