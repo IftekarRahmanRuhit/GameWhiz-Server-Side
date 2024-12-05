@@ -49,9 +49,12 @@ async function run() {
       res.send(result);
     });
 
-  
-
-
+    app.get("/myreviews/:email", async (req, res) => {
+      const userEmail = req.params.email;
+      const query = { userEmail };
+      const result = await reviewCollection.find(query).toArray();
+      res.send(result);
+    });
 
     app.get("/gamewatchlist/:email", async (req, res) => {
       const userEmail = req.params.email;
@@ -60,7 +63,12 @@ async function run() {
       res.send(result);
     });
 
-
+    app.delete("/reviews/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id)}; 
+      const result = await reviewCollection.deleteOne(query);
+      res.send(result);
+    });
 
     app.post("/reviews", async (req, res) => {
       const newReview = req.body;
@@ -69,15 +77,11 @@ async function run() {
       res.send(result);
     });
 
-    app.post("/gamewatchlist", async(req,res)=> {
-      const watchListItem =req.body;
-      const result = await watchListCollection.insertOne(watchListItem)
+    app.post("/gamewatchlist", async (req, res) => {
+      const watchListItem = req.body;
+      const result = await watchListCollection.insertOne(watchListItem);
       res.send(result);
-    })
-
-
-
-
+    });
 
     await client.db("admin").command({ ping: 1 });
     console.log(
