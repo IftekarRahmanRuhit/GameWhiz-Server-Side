@@ -1,8 +1,8 @@
-# Gamwehiz
+# Gamewehiz
 
 ## Description Of The Project
 
-**Gamwehiz** is a feature-rich game review platform where users can explore top-rated games, share their thoughts through reviews, and manage their game watchlist. This platform allows authenticated users to add, update, and delete reviews for their favorite games while also keeping track of their personal game watchlist. The application offers a smooth, responsive experience with a dark and light theme toggle and robust authentication features powered by Firebase.
+**Gamewehiz** is a feature-rich game review platform where users can explore top-rated games, share their thoughts through reviews, and manage their game watchlist. This platform allows authenticated users to add, update, and delete reviews for their favorite games while also keeping track of their personal game watchlist. The application offers a smooth, responsive experience with a dark and light theme toggle and robust authentication features powered by Firebase.
 
 ---
 
